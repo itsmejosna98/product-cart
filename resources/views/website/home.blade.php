@@ -21,7 +21,7 @@
 									</div>
 									<div class="product-body">
 										<h4 class="product-price">{{$product->product_name}} </h4>
-										<h3 class="product-name"><a href="#">{{$product->price}}</a></h3>
+										<h3 class="product-name"><a href="#">{{$product->price}}₹</a></h3>
 									</div>
 									<div class="product-btns text-center">
 											<a href="{{url('product-view/'.$product->id.'/view')}}"><i class="fa fa-eye"></i></a>
