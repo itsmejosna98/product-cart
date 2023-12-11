@@ -29,6 +29,7 @@ Route::get('product-view/{id}/view', [WebsiteController::class, 'view'])->name('
 Route::post('add-cart',[App\Http\Controllers\CartController::class,'addCart']);
 Route::get('cart-create',[App\Http\Controllers\CartController::class,'create']);
 Route::post('place-order',[App\Http\Controllers\CartController::class,'placeOrder']);
+Route::get('cart-product/{id}/delete', [App\Http\Controllers\CartController::class, 'delete'])->name('cart.product.delete');
 
 Route::post('loginCheck',[App\Http\Controllers\LoginController::class,'loginCheck']);
 Route::post('user',[App\Http\Controllers\LoginController::class,'store']);

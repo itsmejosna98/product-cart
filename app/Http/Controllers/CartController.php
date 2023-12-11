@@ -66,4 +66,13 @@ class CartController extends Controller
         $carts= Cart::where('user_id', '=', Auth::id())->delete();
         return redirect('home');
     }
+
+    public function delete($id)
+    {
+        $carts=Cart::find($id);
+        if ($carts) {
+            $carts->delete();
+        }
+        return 1;
+    }
 }

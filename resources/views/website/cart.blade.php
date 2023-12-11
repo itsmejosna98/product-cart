@@ -32,7 +32,7 @@
                                                 <th>Price</th>
                                                 <th>Quantity</th>
                                                 <th>Total price</th>
-                                                <!-- <th>Actions</th> -->
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         @php $count=1; @endphp
@@ -48,7 +48,7 @@
                                                     <td>{{$cart->price}}</td>
                                                     <td><input class="qtyInput" style="width:50px;" id="quantity<?php echo $count ?>" name="quantity[]" value="{{$cart->quantity}}" min="1" type="number"></td>
                                                     <td>{{$totalPrice}}</td>
-                                                    <!-- <td><button type="button" onclick="removeData({{ $cart->view_products->id }})" style="background-color: red;">Remove</button></td> -->
+                                                    <td><button type="button" onclick="deleteData({{ $cart->id }})" style="background-color: red;">Remove</button></td>
                                                     <!-- <td><a href="{{url('cart/'.$cart->id)}}"><button style="background-color: red;">Remove</button></a></td> -->
                                                 </tr>
                                                 <input type="hidden" value="{{$count}}" name="count">
@@ -88,9 +88,23 @@
         });
         //    $('#upQuantity').val(upPrice);
     });
-    function removeData(productId) {
-        $("#dataRow_" + productId).remove();
-
+    function deleteData(cartId) {
+        $.ajax({
+            type: 'GET',
+            url: "{{ url('cart-product') }}" + '/' + cartId + '/delete',
+            success: function (data) {
+                console.log('Delete success:', data);
+                console.log("success")
+                    console.log('Row deleted successfully.');
+                    $("#dataRow_" + cartId).remove();
+                    window.location.href = '{{ url("cart-create") }}';
+            },
+            error: function (error) {
+                console.log("eroorosky")
+                // Log error to console for debugging
+                console.log('Delete error:', error);
+            }
+        });
     }
 </script>
 
